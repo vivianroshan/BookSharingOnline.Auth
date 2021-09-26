@@ -58,7 +58,9 @@ namespace BookSharingOnline.Auth.Controllers
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    expiration = token.ValidTo,
+                    name= user.UserName,
+                    role=userRoles[0]
                 });
             }
             return Unauthorized();
