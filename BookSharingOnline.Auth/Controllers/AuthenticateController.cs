@@ -44,6 +44,10 @@ namespace BookSharingOnline.Auth.Controllers
                 foreach (var userRole in userRoles)
                 {
                     authClaims.Add(new Claim("Role", userRole));
+                    if (userRole == "both" || userRole == "buyer")
+                        authClaims.Add(new Claim("buy", "yes"));
+                    if (userRole == "both" || userRole == "seller")
+                        authClaims.Add(new Claim("sell", "yes"));
                 }
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
 
